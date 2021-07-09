@@ -31,7 +31,7 @@ public extension SwiftQueueManager {
     /// Register task that can potentially run in Background (Using BackgroundTask API)
     /// Registration of all launch handlers must be complete before the end of applicationDidFinishLaunching(_:)
     /// https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler/3180427-register
-    func registerForBackgroundTask(forTaskWithUUID: String) {
+    public func registerForBackgroundTask(forTaskWithUUID: String) {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: forTaskWithUUID, using: nil) { [weak self] task in
             if let operation = self?.getOperation(forUUID: task.identifier) {
                 task.expirationHandler = {
@@ -43,14 +43,14 @@ public extension SwiftQueueManager {
     }
 
     /// Call this method when application is entering background to schedule jobs as background task
-    func applicationDidEnterBackground() {
+   public func applicationDidEnterBackground() {
         for operation in getAllAllowBackgroundOperation() {
             operation.scheduleBackgroundTask()
         }
     }
 
     /// Cancel all possible background Task
-    func cancelAllBackgroundTask() {
+   public func cancelAllBackgroundTask() {
         for operation in getAllAllowBackgroundOperation() {
             if let uuid = operation.name {
                 BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: uuid)
