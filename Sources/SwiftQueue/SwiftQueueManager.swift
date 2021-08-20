@@ -125,7 +125,7 @@ public extension SwiftQueueManager {
     }
 }
 
-internal extension SwiftQueueManager {
+public extension SwiftQueueManager {
 
     func getAllAllowBackgroundOperation() -> [SqOperation] {
         return manage.values
