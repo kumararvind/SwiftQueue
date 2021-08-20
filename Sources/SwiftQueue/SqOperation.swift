@@ -30,7 +30,7 @@ public final class SqOperation: Operation {
 
     public var nextRunSchedule: Date?
 
-    internal let handler: Job
+    public let handler: Job
     internal var lastError: Error?
 
     private let constraints: [JobConstraint]
